@@ -1,0 +1,71 @@
+
+
+.line-numbered-textarea {
+  display: flex;
+}
+
+.line-numbers {
+  width: 30px;
+  border-right: 1px solid #ccc;
+  padding: 10px;
+  text-align: right;
+}
+
+
+textarea {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 17px;
+}
+
+.lines-output {
+  margin-top: 10px;
+}
+
+.submit_form{
+  margin: 80px;
+  width: 1000px;
+}
+
+.submitBtn{
+  margin-left: 50px;
+  width: 950px;
+  height: 40px;
+  background-color: #3838dd;
+  margin-top: 30px;
+  color: white;
+}
+
+.errLines{
+  border: solid 1px red;
+  color: red;
+  margin-top: 20px;
+  margin-left: 50px;
+  text-align: center;
+  padding: 20px;
+}
+
+.duplicate{
+  color: red;
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+.duplicate_details{
+  border: solid 1px red;
+  color: red;
+  margin-top: 5px;
+  margin-left: 50px;
+  text-align: center;
+  padding: 20px;
+}
+
+.methods{
+  float: right;
+}
+
+.title{
+  margin-left: 50px;
+}
