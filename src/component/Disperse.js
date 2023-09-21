@@ -158,9 +158,14 @@ function Disperse() {
               </div>
               
             </div>}
-      {duplicate && duplicatesDetail.map((item) =>
-              <div className='duplicate_details'>Address {item.code} Encountered duplicated in Line {item.lines}</div>
+            {duplicate && <div className='duplicate_details'>
+            {duplicate && duplicatesDetail.map((item) =>
+              
+                <p className='duplicate_error'>Address {item.code} Encountered duplicated in Line {item.lines}</p>
+              
                )}
+            </div>}
+     
            
         
           

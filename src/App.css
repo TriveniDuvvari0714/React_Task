@@ -56,10 +56,10 @@ textarea {
 .duplicate_details{
   border: solid 1px red;
   color: red;
-  margin-top: 5px;
+   margin-top: 5px; 
   margin-left: 50px;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 .methods{
@@ -68,4 +68,9 @@ textarea {
 
 .title{
   margin-left: 50px;
+}
+
+.duplicate_error{
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
