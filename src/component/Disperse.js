@@ -15,7 +15,6 @@ function Disperse() {
       setText(newText);
       const linesArray = newText.split('\n').filter((line) => line.trim() !== '');
       setLines(linesArray);
-      console.log(linesArray);
     };
 
     const onSubmit = () => {
@@ -68,9 +67,9 @@ function Disperse() {
       if(duplicatesDetails.length > 0){
         setDuplicate(true);
       }
-      debugger;
-      if(duplicatesDetails.length == 0 && err == 0){
-        alert("Submitted")
+      if(duplicatesDetails.length === 0 && err === 0){
+        alert("Submitted");
+        setText('');
       }
         
     }
