@@ -22,21 +22,27 @@ function Disperse() {
         const regex = /^[0-9]+$/;
         const duplicatesDetails = [];
         const seen = new Set();
+        const seendupDetails = new Set();
         const err = [];
+        seterrLine([]);
+        setamountError(false);
         lines.map((line,index) => {
             if(line){
-                const lineList = line.split(' ');
+                const lineList = line.split(/[ =,]+/);
+                console.log(lineList);
                 if(regex.test(lineList[1])){
-                  setamountError(false);
                 }else{
                     err.push(index+1+',');
-                    setamountError(true);
                 }
-                if(!seen.has(line.split(' ')[0])){
-                  seen.add(line.split(' ')[0]);
+                if(!seen.has(line.split(/[ =,]+/)[0])){
+                  seen.add(line.split(/[ =,]+/)[0]);
                    
               }else{
-                duplicatesDetails.push({'code':line.split(' ')[0],'lines':''});
+                if(!seendupDetails.has(line.split(/[ =,]+/)[0])){
+                  seendupDetails.add(line.split(/[ =,]+/)[0])
+                  duplicatesDetails.push({'code':line.split(/[ =,]+/)[0],'lines':''});
+                }
+                
               }
             }
         });
@@ -44,24 +50,27 @@ function Disperse() {
         if(err.length == 0){
           duplicatesDetails.map((parent,index) => {
             lines.map((child,i) => {
-                if(parent.code  == child.split(' ')[0]){
+                if(parent.code  == child.split(/[ =,]+/)[0]){
                 duplicatesDetails[index].lines = duplicatesDetails[index].lines + parseInt(i+1) +","
                 }
             });
         });
         }        
 
-        duplicatesDetails.map((child,i) => {
+        duplicatesDetails.map((child) => {
           child.lines = child.lines.slice(0,child.lines.lastIndexOf(','));         
       });
+      if(err.length > 0){
+        setamountError(true);
+      }
        seterrLine(err);
        setduplicatesDetail(duplicatesDetails);
       if(duplicatesDetails.length > 0){
         setDuplicate(true);
       }
-      if(!duplicate && !amountError && err.length == 0){
-        alert("Submitted Successfully");
-        setText('')
+      debugger;
+      if(duplicatesDetails.length == 0 && err == 0){
+        alert("Submitted")
       }
         
     }
@@ -72,7 +81,7 @@ function Disperse() {
         var keepFirst = '';
         lines.map((line,index) => {
             if(line){
-                const lineList = line.split(' ');
+                const lineList = line.split(/[ =,]+/);
                console.log(lineList[0]);
                 if (!seen.has(lineList[0])) {
                   seen.add(lineList[0]);
@@ -87,6 +96,7 @@ function Disperse() {
         })
         setText(keepFirst);
         setDuplicate(false);
+        setduplicatesDetail([]);
         setLines([]);
     }
 
@@ -96,7 +106,7 @@ function Disperse() {
         var combineres = '';
         lines.map((line,index) => {
             if(line){
-                const lineList = line.split(' ');
+                const lineList = line.split(/[ =,]+/);
                 if(!seen.has(lineList[0])){
                     seen.add(lineList[0]);
                     result.push({'code':lineList[0],'value':0,'lines':''});
@@ -105,8 +115,8 @@ function Disperse() {
         });
             result.map((parent,index) => {
                 lines.map((child,i) => {
-                    if(parent.code  == child.split(' ')[0]){
-                    result[index].value = parseInt(result[index].value) + parseInt(child.split(' ')[1]);
+                    if(parent.code  == child.split(/[ =,]+/)[0]){
+                    result[index].value = parseInt(result[index].value) + parseInt(child.split(/[ =,]+/)[1]);
                     }
                 });
                 
@@ -118,6 +128,7 @@ function Disperse() {
           setText(combineres);
           setDuplicate(false);
           setLines([]);
+          setduplicatesDetail([]);
 
         }
   
